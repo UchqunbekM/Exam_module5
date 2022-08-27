@@ -1,7 +1,6 @@
 # Exam_module5
 User tableda roleda ADMIN berish kere 
-Login for admin panel: admin
-Password:   admin
+Login parol bilan 
 
 
 Database table's :
