@@ -1,5 +1,5 @@
 # Exam_module5
-
+User tableda roleda ADMIN berish kere 
 Login for admin panel: admin
 Password:   admin
 
@@ -12,7 +12,8 @@ create table users
         primary key,
     username varchar,
     password varchar,
-    email    varchar
+    email    varchar,
+    role     varchar
 );
 
 create table category
