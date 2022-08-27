@@ -1,5 +1,6 @@
 package com.example.exam_module5.Product;
 
+import com.example.exam_module5.Category.CategoryDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,12 +8,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import uz.pdp.Exam.category.CategoryDao;
 
 import java.io.File;
 import java.io.IOException;
 
-import static uz.pdp.Exam.utils.Util.UPLOAD_DIRECTORY;
+import static com.example.exam_module5.utils.Util.UPLOAD_DIRECTORY;
 
 
 @WebServlet("/add-product")
@@ -28,12 +28,12 @@ public class AddProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("title");
-        String description = req.getParameter("description");
+        Integer salary = Integer.valueOf(req.getParameter("salary"));
         Long categoryId = Long.valueOf(req.getParameter("categoryId"));
         Part imagePart = req.getPart("image");
         Product product = Product.builder()
                 .name(title)
-                .description(description)
+                .salary(salary)
                 .categoryId(categoryId)
                 .imgUrl(uploadAndGetImageUrl(imagePart))
                 .build();

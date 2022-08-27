@@ -1,9 +1,8 @@
 package com.example.exam_module5.Product;
 
+import com.example.exam_module5.Category.Category;
+import com.example.exam_module5.Database.DbConnection;
 import com.google.gson.Gson;
-import uz.pdp.Exam.category.Category;
-import uz.pdp.Exam.db.DbConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +17,7 @@ public class ProductDao {
             Connection connection = DbConnection.getConnection();
             String sql = "select b.id,\n" +
                     "       b.title,\n" +
-                    "       b.description,\n" +
+                    "       b.salary,\n" +
                     "       b.\"imgUrl\",\n" +
                     "    json_build_object('id', c.id, 'name', c.name) as category\n" +
                     "from product b\n" +
@@ -31,14 +30,14 @@ public class ProductDao {
                 String name = resultSet.getString("title");
                 Object categoryObj = resultSet.getObject("category");
                 String imgUrl = resultSet.getString("imgUrl");
-                String description = resultSet.getString("description");
+                Integer salary = resultSet.getInt("salary");
                 Category category = new Gson().fromJson(categoryObj.toString(), Category.class);
                 Product product = Product.builder()
                         .id(productid)
                         .name(name)
                         .category(category)
                         .imgUrl(imgUrl)
-                        .description(description)
+                        .salary(salary)
                         .build();
                 productList.add(product);
             }
@@ -50,11 +49,11 @@ public class ProductDao {
     public static boolean addProduct(Product product) {
         try {
             Connection connection = DbConnection.getConnection();
-            String insertBook = "insert into product (title, description, category_id, \"imgUrl\") VALUES " +
+            String insertBook = "insert into product (title, salary, category_id, \"imgUrl\") VALUES " +
                     "(?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertBook);
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getDescription());
+            preparedStatement.setInt(2, product.getSalary());
             preparedStatement.setLong(3, product.getCategoryId());
             preparedStatement.setString(4, product.getImgUrl());
             int executeUpdate1 = preparedStatement.executeUpdate();
@@ -83,7 +82,7 @@ public class ProductDao {
             String sql = "select b.id,\n" +
                     "       b.title,\n" +
                     "       b.\"imgUrl\",\n" +
-                    "       b.description,\n" +
+                    "       b.salary,\n" +
                     "    json_build_object('id', c.id, 'name', c.name) as category\n" +
                     "from product b\n" +
                     "         join category c on c.id = b.category_id where b.id = ?" +
@@ -96,14 +95,14 @@ public class ProductDao {
                 String name = resultSet.getString("title");
                 Object categoryObj = resultSet.getObject("category");
                 String imgUrl = resultSet.getString("imgUrl");
-                String description = resultSet.getString("description");
+                Integer salary = resultSet.getInt("salary");
                 Category category = new Gson().fromJson(categoryObj.toString(), Category.class);
                 Product product = Product.builder()
                         .id(productid)
                         .name(name)
                         .category(category)
                         .imgUrl(imgUrl)
-                        .description(description)
+                        .salary(salary)
                         .build();
                 return product;
             }
@@ -117,12 +116,12 @@ public class ProductDao {
             Connection connection = DbConnection.getConnection();
             String updateBook = "update product set " +
                     "title=?, " +
-                    "description=?, " +
+                    "salary=?, " +
                     "category_id=?, " +
                     "\"imgUrl\"=?  where id= ? ";
             PreparedStatement preparedStatement = connection.prepareStatement(updateBook);
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getDescription());
+            preparedStatement.setInt(2, product.getSalary());
             preparedStatement.setLong(3, product.getCategoryId());
             preparedStatement.setString(4, product.getImgUrl());
             preparedStatement.setLong(5, product.getId());
