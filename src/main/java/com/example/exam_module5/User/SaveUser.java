@@ -21,7 +21,7 @@ public class SaveUser extends HttpServlet {
         user.setUsername(name);
         user.setPassword(password);
         user.setEmail(email);
-        UserDAo.save_user(user);
-        resp.sendRedirect("/products");
+        UserDao.save_user(user);
+        resp.sendRedirect("/product");
     }
 }

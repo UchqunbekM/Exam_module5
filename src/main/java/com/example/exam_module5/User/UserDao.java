@@ -1,6 +1,7 @@
 package com.example.exam_module5.User;
 
-import uz.pdp.Exam.db.DbConnection;
+import com.example.exam_module5.Database.DbConnection;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAo {
+public class UserDao {
 
 
     public static List<User> getAllUsers() {
@@ -76,10 +77,11 @@ public class UserDAo {
         try{
             Connection con=DbConnection.getConnection();
             PreparedStatement ps=con.prepareStatement(
-                    "insert into users(username, password,email) values (?,?,?)");
+                    "insert into users(username, password,email,role) values (?,?,?,?)");
             ps.setString(1,e.getUsername());
             ps.setString(2,e.getPassword());
             ps.setString(3,e.getEmail());
+            ps.setString(4, e.getRole());
             status=ps.executeUpdate();
 
             con.close();

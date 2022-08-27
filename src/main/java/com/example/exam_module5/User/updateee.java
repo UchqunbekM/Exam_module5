@@ -15,7 +15,7 @@ public class updateee extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idd=req.getParameter("id");
         int id= Integer.parseInt(idd);
-        List<User> list=UserDAo.getAllByIDUsers(id);
+        List<User> list= UserDao.getAllByIDUsers(id);
         req.setAttribute("list",list);
         req.getRequestDispatcher("register.jsp").forward(req,resp);
     }

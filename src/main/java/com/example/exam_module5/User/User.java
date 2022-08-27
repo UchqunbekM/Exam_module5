@@ -1,5 +1,6 @@
 package com.example.exam_module5.User;
 
+import com.example.exam_module5.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,6 @@ import lombok.NoArgsConstructor;
         private String username;
         private String password;
         private String email;
+        private String role= Role.USER.name();;
     }
 

@@ -22,8 +22,8 @@
                 <input id="title" value="${product.getName()}" type="text" name="title">
             </div>
             <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="description" name="description">${product.getSalary}</textarea></div>
+                <label for="salary">Salary:</label>
+                <input id="salary" name="salary">${product.getSalary()}</div>
             <div class="form-group">
                 <label for="categoryId">Select category:</label>
                 <select id="categoryId" name="categoryId " required>

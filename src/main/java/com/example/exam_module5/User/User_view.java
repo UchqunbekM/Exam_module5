@@ -15,7 +15,7 @@ public class User_view extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter printWriter=resp.getWriter();
-        List<User>userList = UserDAo.getAllUsers();
+        List<User>userList = UserDao.getAllUsers();
         req.setAttribute("list",userList);
         System.out.println(userList);
         req.getRequestDispatcher("List_user.jsp").forward(req,resp);
