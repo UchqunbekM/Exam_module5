@@ -15,7 +15,7 @@ public class Deleteuser extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id=req.getParameter("id");
         int  idd= Integer.parseInt(id);
-        UserDao.deleteuser(idd);
+        UserDAoaaa.deleteuser(idd);
         PrintWriter out=resp.getWriter();
         resp.setContentType("text/html");
         req.getRequestDispatcher("user_view").include(req, resp);

@@ -1,4 +1,5 @@
-package com.example.exam_module5;
+package com.example.exam_module5.filtr;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-@WebFilter(value = "/*")
+@WebFilter("/*")
 public class AuthFilter implements Filter {
 
     @Override
@@ -33,12 +34,12 @@ public class AuthFilter implements Filter {
         if (Objects.nonNull(isAuthenticated) || isPublic(path)) {
             filterChain.doFilter(req, resp);
         } else {
-            response.sendRedirect("/");
+            response.sendRedirect("/index.html");
         }
     }
 
     private boolean isPublic(String servletPath) {
-        List<String> list = new ArrayList<>(Arrays.asList("/", "/login", "/index.jsp"));
+        List<String> list = new ArrayList<>(Arrays.asList( "/index.html","/login"));
         return list.contains(servletPath);
     }
 

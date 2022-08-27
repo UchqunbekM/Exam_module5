@@ -15,15 +15,15 @@ public class Userupdate extends HttpServlet {
         String username=req.getParameter("username");
         String password=req.getParameter("password");
         String lastname=req.getParameter("email");
-        UserDao.update(id,username,password, lastname);
+        UserDAoaaa.update(id,username,password, lastname);
         resp.setContentType("text/html");
-        req.getRequestDispatcher("user_view").include(req, resp);
+        resp.sendRedirect("user_view");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        req.getRequestDispatcher("user_view").include(req, resp);
+      resp.sendRedirect("user_view");
     }
 
 }

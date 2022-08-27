@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
         private String username;
         private String password;
         private String email;
-        private String role= Role.USER.name();;
+        private String role= Role.USER.name();
     }
 

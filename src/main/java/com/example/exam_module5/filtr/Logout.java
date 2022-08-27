@@ -1,4 +1,4 @@
-package com.example.exam_module5.User;
+package com.example.exam_module5.filtr;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,16 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/updateeuser")
-public class updateee extends HttpServlet {
+@WebServlet("/log-out")
+public class Logout extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idd=req.getParameter("id");
-        int id= Integer.parseInt(idd);
-        List<User> list= UserDAoaaa.getAllByIDUsers(id);
-        req.setAttribute("list",list);
-        req.getRequestDispatcher("register.jsp").forward(req,resp);
+
+        req.getSession().invalidate();
+        resp.sendRedirect("/product-user");
     }
 }

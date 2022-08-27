@@ -2,7 +2,6 @@ package com.example.exam_module5.User;
 
 import com.example.exam_module5.Database.DbConnection;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao {
+public class UserDAoaaa {
 
 
     public static List<User> getAllUsers() {
@@ -29,15 +28,16 @@ public class UserDao {
                Long id = Long.valueOf(resultSet.getString("id"));
                 String username = resultSet.getString("username");
                 String pasword= resultSet.getString("password");
-                String pasword1= resultSet.getString("email");
+                String email= resultSet.getString("email");
+                String role = resultSet.getString("role");
                 user.setId(id);
-                user.setUsername(username);
-                user.setPassword(pasword);
-                user.setEmail(pasword1);
+                    user.setUsername(username);
+                    user.setPassword(pasword);
+                    user.setEmail(email);
+                    user.setRole(role);
+                    userList.add(user);
+                }
 
-           userList.add(user);
-
-            }
 
 
         } catch (SQLException e) {

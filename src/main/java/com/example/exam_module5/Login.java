@@ -1,7 +1,7 @@
 package com.example.exam_module5;
 
 import com.example.exam_module5.User.User;
-import com.example.exam_module5.User.UserDao;
+import com.example.exam_module5.User.UserDAoaaa;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +19,7 @@ public class Login extends HttpServlet {
         resp.setContentType("text/html");
         String name = req.getParameter("name");
         String password = req.getParameter("password");
-        List<User> users = UserDao.getAllUsers();
+        List<User> users = UserDAoaaa.getAllUsers();
         PrintWriter out = resp.getWriter();
         for (User user : users) {
             if (name.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().equals(Role.ADMIN.name())) {
